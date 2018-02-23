@@ -15,9 +15,9 @@ class TestPrime(object):
         assert True
 
     def test_prime_5(self):
-        """ Test prime(5) and make sure it returns [1, 2, 3, 5]. """
+        """ Test prime(5) and make sure it returns [2, 3, 5]. """
         result = self.prime.primes(stop=5)
-        assert len(result) == 3, 'list of primes was expected to have length 4'
+        assert len(result) == 3, 'list of primes was expected to have length 3'
         assert result[0] == 2
         assert result[1] == 3
         assert result[2] == 5
@@ -75,12 +75,13 @@ class TestKnownPrimes(object):
         assert len(self.kp.get_known_primes(max_value=22)) == 8
 
     def test_check_primeness(self):
+        """Check all the even numbers from 2 through 10000 to see if they are prime."""
         primes = [3, 5, 7, 11]
         for prime in primes:
             assert self.kp.check_primeness(prime), 'Thinks {} is not prime'.format(prime)
 
         even_number = 2
-        while even_number < 10000:
+        while even_number <= 10000:
             assert not self.kp.check_primeness(even_number)
             even_number = even_number + 2
 
