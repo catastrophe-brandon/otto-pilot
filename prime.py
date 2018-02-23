@@ -7,6 +7,7 @@ logger = logging.getLogger(__name__)
 class KnownPrimes(object):
 
     def __init__(self):
+        """Initialize the instance with a starter set of known primes."""
         self.known_primes = [2, 3, 5, 7, 11, 13, 17, 19, 23]
 
     def largest_known_prime(self):

@@ -17,11 +17,10 @@ class TestPrime(object):
     def test_prime_5(self):
         """ Test prime(5) and make sure it returns [1, 2, 3, 5]. """
         result = self.prime.primes(stop=5)
-        assert len(result) == 4, 'list of primes was expected to have length 4'
-        assert result[0] == 1
-        assert result[1] == 2
-        assert result[2] == 3
-        assert result[3] == 5
+        assert len(result) == 3, 'list of primes was expected to have length 4'
+        assert result[0] == 2
+        assert result[1] == 3
+        assert result[2] == 5
 
     def test_is_prime(self):
         assert self.prime.is_prime(5)
@@ -66,14 +65,14 @@ class TestKnownPrimes(object):
 
     def test_get_known_primes(self):
         assert self.kp.largest_known_prime() == 23
-        assert len(self.kp.get_known_primes(max_value=23)) == 10
-        assert len(self.kp.get_known_primes(max_value=24)) == 10
-        assert len(self.kp.get_known_primes(max_value=25)) == 10
-        assert len(self.kp.get_known_primes(max_value=26)) == 10
-        assert len(self.kp.get_known_primes(max_value=27)) == 10
-        assert len(self.kp.get_known_primes(max_value=28)) == 10
+        assert len(self.kp.get_known_primes(max_value=23)) == 9
+        assert len(self.kp.get_known_primes(max_value=24)) == 9
+        assert len(self.kp.get_known_primes(max_value=25)) == 9
+        assert len(self.kp.get_known_primes(max_value=26)) == 9
+        assert len(self.kp.get_known_primes(max_value=27)) == 9
+        assert len(self.kp.get_known_primes(max_value=28)) == 9
 
-        assert len(self.kp.get_known_primes(max_value=22)) == 9
+        assert len(self.kp.get_known_primes(max_value=22)) == 8
 
     def test_check_primeness(self):
         primes = [3, 5, 7, 11]
