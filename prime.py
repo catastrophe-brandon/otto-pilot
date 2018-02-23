@@ -7,7 +7,7 @@ logger = logging.getLogger(__name__)
 class KnownPrimes(object):
 
     def __init__(self):
-        self.known_primes = [1, 2, 3, 5, 7, 11, 13, 17, 19, 23]
+        self.known_primes = [2, 3, 5, 7, 11, 13, 17, 19, 23]
 
     def largest_known_prime(self):
         """Return the largest known prime number."""
@@ -20,11 +20,8 @@ class KnownPrimes(object):
             logger.error('Tried to add a non-integer to the list of known primes: {}'.format(new_prime))
             return
 
-        # TODO: validate input value > largest_known_prime
-        if new_prime not in self.known_primes and new_prime > self.largest_known_prime():
-            self.known_primes.append(new_prime)
-        else:
-            logger.warn('Tried to add a new prime, but it was already known: {}'.format(new_prime))
+        if not self.check_primeness(new_prime):
+            logger.error('You tried to add a value that was not prime, but I forgive you.')
             return
 
     def is_known(self, prime):
@@ -34,6 +31,7 @@ class KnownPrimes(object):
     def get_known_primes(self, max_value=10):
         """Return the list of known primes."""
         # Make a copy so as not to expose the backing structure
+        # TODO: there's a more efficient way to do this but I'm too tired to think of it atm :)
         known_primes_result = []
         for prime in self.known_primes:
             if prime <= max_value:
@@ -42,6 +40,27 @@ class KnownPrimes(object):
                 break
 
         return known_primes_result
+
+    def check_primeness(self, some_integer):
+        """Call this if the prime is not already known."""
+        if some_integer % 2 == 0:
+            return False
+
+        if self.is_known(some_integer):
+            return True
+
+        # Ok, now we have to do real work. Le sigh.
+        for prime in self.known_primes:
+            if prime == 1:
+                continue
+
+            if some_integer % prime == 0:
+                return False
+
+        # Process of elimination
+        # self.add_prime(some_integer)
+        self.known_primes.append(some_integer)
+        return True
 
 
 class Prime(object):
@@ -54,24 +73,10 @@ class Prime(object):
         if self.known_primes.is_known(some_integer):
             return True
 
-        if self._check_primeness(some_integer):
+        if self.known_primes.check_primeness(some_integer):
             return True
 
         return False
-
-    def _check_primeness(self, some_integer):
-        """Call this if the prime is not already known."""
-        if some_integer % 2 == 0:
-            return False
-
-        # Ok, now we have to do real work. Le sigh.
-        for prime in self.known_primes.get_known_primes():
-            if some_integer % prime == 0:
-                return False
-
-        # Process of elimination
-        self.known_primes.add_prime(some_integer)
-        return True
 
     def primes(self, stop=100):
         """Returns the list of all prime numbers between 1 and stop."""
@@ -85,9 +90,14 @@ class Prime(object):
         if start >= stop:
             return self.known_primes.get_known_primes(max_value=stop)
 
-        check_this = start
+        # Needed to help us skip checking all the even numbers.
+        if start % 2 == 0:
+            check_this = start + 1
+        else:
+            check_this = start
+
         while check_this <= stop:
             self.is_prime(check_this)
-            check_this = check_this + 1
+            check_this = check_this + 2
 
         return self.known_primes.get_known_primes(max_value=stop)
