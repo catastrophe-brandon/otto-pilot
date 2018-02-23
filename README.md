@@ -16,8 +16,8 @@ You will need to have the following installed and set up on your system in order
               windows.
         * Confirm installation by running `python --version` from a terminal or Command Prompt.
    * pip3 - This is typically bundled with Python 3.6. Confirm by running `pip3 --version` from a terminal or Command Prompt.
-   * tox - Just `pip3 install tox` and you should be all set. Confirm install by running `tox --version`
-
+   * pytest - `pip3 install pytest`
+   
 # Installation
 
 First, you need to clone the contents of this repository. If you're not familiar with git or source control, you
@@ -27,10 +27,36 @@ may want to read about that first.
 
 From the root folder of this repository:
 
-    1. `pip install -r requirements.txt`
-    2. `python main.py`
+    $ python main.py 100
+
+Example output:
+
+```
+C:\Users\Brandon\repos\otto-pilot>python main.py 288
+You entered: 288
+Calculating prime numbers less than or equal to 288
+Found 61 prime numbers
+```
+
 
 ## If you want to run the tests
 
-Tox is setup to execute all the tests for you. Running the tests and getting output should be as simple as:
-`tox -re test` from a terminal or Command-Prompt.
+Running the tests and getting output should be as simple as:
+`pytest` from a terminal or Command-Prompt.
+
+Example Output:
+
+```
+C:\Users\Brandon\repos\otto-pilot>pytest
+============================= test session starts =============================
+platform win32 -- Python 3.6.1, pytest-3.1.3, py-1.4.34, pluggy-0.4.0
+metadata: {'Python': '3.6.1', 'Platform': 'Windows-10-10.0.16299-SP0', 'Packages': {'pytest': '3.1.3'
+, 'py': '1.4.34', 'pluggy': '0.4.0'}, 'Plugins': {'metadata': '1.5.0', 'html': '1.15.2'}}
+rootdir: C:\Users\Brandon\repos\otto-pilot, inifile:
+plugins: metadata-1.5.0, html-1.15.2
+collected 8 items 
+
+tests\test_prime.py ........
+
+========================== 8 passed in 10.14 seconds ==========================
+```

@@ -80,6 +80,11 @@ class TestKnownPrimes(object):
         for prime in primes:
             assert self.kp.check_primeness(prime), 'Thinks {} is not prime'.format(prime)
 
+        # confirm order doesn't matter
+        primes = [11, 7, 5, 3]
+        for prime in primes:
+            assert self.kp.check_primeness(prime)
+
         even_number = 2
         while even_number <= 10000:
             assert not self.kp.check_primeness(even_number)
