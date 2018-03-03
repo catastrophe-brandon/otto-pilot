@@ -12,10 +12,11 @@ You will need to have the following installed and set up on your system in order
         * Mac - `brew install python3`
         * Windows - Download the installer, and install as one normally would
             * Don't forget to add PYTHONPATH to your path for command-line convenience
-            * Don't forget to click the Python installer's checkbox to set the PYTHONPATH variable if you're installing on
-              windows.
+            * Don't forget to click the Python installer's checkbox to set the PYTHONPATH variable if you're 
+              installing on windows.
         * Confirm installation by running `python --version` from a terminal or Command Prompt.
-   * pip3 - This is typically bundled with Python 3.6. Confirm by running `pip3 --version` from a terminal or Command Prompt.
+   * pip3 - This is typically bundled with Python 3.6. Confirm by running `pip3 --version` from a terminal or 
+     Command Prompt.
    * pytest - `pip3 install pytest`
    
 # Installation
@@ -27,15 +28,16 @@ may want to read about that first.
 
 From the root folder of this repository:
 
-    $ python main.py 100
+    $ python main.py 5 100
 
 Example output:
 
 ```
-C:\Users\Brandon\repos\otto-pilot>python main.py 288
-You entered: 288
-Calculating prime numbers less than or equal to 288
-Found 61 prime numbers
+C:\Users\Brandon\repos\otto-pilot>python main.py 5 100
+You entered: min=5 max=100
+Calculating prime numbers between 5 and 100
+Found 22 prime numbers
+[7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97]
 ```
 
 

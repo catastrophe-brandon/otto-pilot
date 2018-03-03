@@ -114,3 +114,39 @@ class Prime(object):
             check_this = check_this + 2
 
         return self.known_primes.get_known_primes(max_value=stop)
+
+    def primes_between(self, start, stop):
+        assert stop > start, 'Specified input value for stop needs to be greater than start value'
+        full_set = self.primes(stop=stop)
+        return self._trim_set(start, stop, full_set)
+
+    @staticmethod
+    def _trim_set(start, stop, full_set):
+        """
+        Take the full set of primes and trim it down to include only the values we care about.
+        :param start First value after which we expect to find primes.
+        :param stop Last value before which we expect to find primes.
+        :param full_set Input set of primes to be trimmed down. Will be modified.
+        """
+
+        if len(full_set) == 0:
+            # Nothing to do here!
+            return full_set
+
+        # Clean up the end
+        if stop in full_set:
+            full_set.remove(stop)
+
+        # Find first value in the list greater than start
+        first_item = full_set.pop(0)
+        while first_item <= start and len(full_set) > 0:
+            first_item = full_set.pop(0)
+
+        # If we went too far, put the item back on
+        if first_item > start:
+            full_set.insert(0, first_item)
+
+        return full_set
+
+
+
