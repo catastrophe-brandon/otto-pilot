@@ -1,6 +1,7 @@
 import logging
 
 logger = logging.getLogger(__name__)
+logging.basicConfig(filename='main.log', level=logging.DEBUG)
 
 
 class KnownPrimes(object):
@@ -13,6 +14,7 @@ class KnownPrimes(object):
     def largest_known_prime(self):
         """Return the largest known prime number."""
         # We always assume the largest prime will be at the end of the list
+
         return self.known_primes[len(self.known_primes) - 1]
 
     def add_prime(self, new_prime):
