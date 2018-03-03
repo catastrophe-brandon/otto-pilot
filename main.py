@@ -13,6 +13,7 @@ def main(max_prime):
     print('Calculating prime numbers less than or equal to {}'.format(max_prime))
     primes = Prime().primes(stop=max_prime)
     print('Found {} prime numbers'.format(len(primes)))
+    print(primes)
 
 
 if __name__ == '__main__':
