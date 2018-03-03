@@ -33,6 +33,20 @@ class TestPrime(object):
         result = self.prime.primes(stop=100000)
         print(result)
 
+    def test_primes_between(self):
+        result = self.prime.primes_between(1, 5)
+
+        expected_result = [2, 3]
+        assert result == expected_result, 'Expected list of primes did not match'
+
+        expected_result = [7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89]
+        result = self.prime.primes_between(5, 97)
+        assert result == expected_result, 'Expected list of primes did not match'
+
+        # When min and max yield an empty set, we should get an empty list
+        result = self.prime.primes_between(4, 5)
+        assert result == [], 'Result should have been an empty list'
+
 
 class TestKnownPrimes(object):
     """Tests focused on the KnownPrimes class."""
